@@ -2,7 +2,7 @@ import pymysql
 
 
 class DBConnect:
-    def __init__(self, usr_ip='localhost', usr_port=3306, usr_name='root', usr_psd='55686676', charset='utf8',
+    def __init__(self, usr_ip='localhost', usr_port=3306, usr_name='root', usr_psd='12345678', charset='utf8',
                  db_name='TESTDB'):
         self.ip = usr_ip
         self.port = usr_port
