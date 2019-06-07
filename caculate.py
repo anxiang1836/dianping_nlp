@@ -1,24 +1,30 @@
 from db_connect import connection
 import set_log
 import numpy as np
+from typing import List, Dict
 
 log = set_log.setting_log()
 
 
 # 重新存储竞争对手关系
-def restore_similar_dict_by_threshold(threshold, similar_list):
-    global_opponent_net = {}
+def restore_similar_dict_by_threshold(threshold: float, similar_list: list):
+    global_opponent_net = None  # type:dict{str,list[str]}
     for row in similar_list:
         # 从相似度的表中获取三元组【店铺1，店铺2，相似度】
         store1 = str(row[0])
         store2 = str(row[1])
         similar = float(row[2])
 
+        global_opponent_net.setdefault(store1, None)
+        global_opponent_net.setdefault(store2, None)
+
+        '''
         # 给global_opponent_net的key赋初值，并设置其value为空list
         if not global_opponent_net.keys().__contains__(store1):
             global_opponent_net[store1] = []
         if not global_opponent_net.keys().__contains__(store2):
             global_opponent_net[store2] = []
+        '''
 
         # 按照阈值对global_opponent_net的value进行赋值
         if (similar >= threshold) and (similar != 1):
@@ -154,11 +160,11 @@ def type_of_entrace(net_of_new, existed_stores, detail_data_dic, month):
 
             if s_price < p_avg_price:  # 价格进入
                 value[0] = 1
-            if s_price < p_avg_price - 1.96 * p_std_price: # 价格显现
+            if s_price < p_avg_price - 1.96 * p_std_price:  # 价格显现
                 value[1] = 1
             if s_quality > p_avg_quality:  # 质量进入
                 value[2] = 1
-            if s_quality > p_avg_quality + 1.96 * p_std_quality: # 质量显现
+            if s_quality > p_avg_quality + 1.96 * p_std_quality:  # 质量显现
                 value[3] = 1
         entrace_of_new[s] = value
     return entrace_of_new
