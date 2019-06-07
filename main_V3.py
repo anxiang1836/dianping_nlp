@@ -8,12 +8,12 @@ import gc
 
 import caculate
 import preprocess
-import set_log
+from utils import log_config
 
 from excel_operate import excel_write as ew
 
 if __name__ == '__main__':
-    log = set_log.setting_log()
+    log = log_config.setting_log()
     # 店铺词谱
     store_dict = {}
 

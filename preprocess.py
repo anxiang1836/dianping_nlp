@@ -1,8 +1,6 @@
-from db_connect import connection
-import set_log
-import pandas
+from utils import mysql_connect, log_config
 
-log = set_log.setting_log()
+log = log_config.setting_log()
 
 
 class DataPreProcess:
@@ -10,7 +8,7 @@ class DataPreProcess:
         self.db_name = db_name
         self.cityname = cityname
         self.trading_area = trading_area
-        self.db = connection.DBConnect(db_name=self.db_name)
+        self.db = mysql_connect.Connection(db_name=self.db_name)
 
     # 创建总的PageUrl表（包含店铺的PageUrl,菜系,经度,纬度）
     def sum_pageurl(self):

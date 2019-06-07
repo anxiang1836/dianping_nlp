@@ -1,9 +1,7 @@
-from db_connect import connection
-import set_log
+from utils import log_config
 import numpy as np
-from typing import List, Dict
 
-log = set_log.setting_log()
+log = log_config.setting_log()
 
 
 # 重新存储竞争对手关系

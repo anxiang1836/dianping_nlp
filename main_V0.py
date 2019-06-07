@@ -4,11 +4,11 @@ main_V0：此版本的功能为，选出在某一地区的某一商圈的所有�
 @Author by MaxMa 2019.05.27
 """
 
-import set_log
+from utils import log_config
 import preprocess
 from excel_operate import excel_write as ew
 
-log = set_log.setting_log()
+log = log_config.setting_log()
 
 if __name__ == '__main__':
     # 0.从用户输入获取

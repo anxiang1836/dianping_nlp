@@ -4,7 +4,7 @@ main_V2：此版本的功能为，将重新进行整理过后的分词结果作�
 @Author by MaxMa 2019.05.20
 """
 
-from db_connect import connection
+from utils import mysql_connect
 from nlp_processing import dish2word as d2w, words2vector as ws2v
 from excel_operate import excel_write as ew
 
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     store_dict = {}
 
     # 0.创建sql连接
-    db = connection.DBConnect(db_name='TuiJianCai')
+    db = mysql_connect.Connection(db_name='TuiJianCai')
     # 1.执行sql语句
     sql_statement = 'select * from `外滩_分词修正`'
     data = db.run_select_sql(sql_statement)
